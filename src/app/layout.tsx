@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { MobileCtaBar } from "@/components/layout/MobileCtaBar";
 
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
@@ -67,7 +70,12 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <SmoothScroll>{children}</SmoothScroll>
+        <SmoothScroll>
+          <Header />
+          <main id="main">{children}</main>
+          <Footer />
+          <MobileCtaBar />
+        </SmoothScroll>
       </body>
     </html>
   );

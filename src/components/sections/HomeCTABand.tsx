@@ -1,0 +1,52 @@
+import { Section } from "@/components/ui/Section";
+import { Button } from "@/components/ui/Button";
+import { Reveal } from "@/components/motion/Reveal";
+import { contact, links } from "@/lib/site";
+
+/**
+ * HomeCTABand — primary conversion band.
+ * Charcoal band, headline + supporting copy, quote + WhatsApp CTAs, phone
+ * reassurance. Mirrored at the foot of every page later.
+ */
+export function HomeCTABand() {
+  return (
+    <Section variant="charcoal" padY="lg">
+      <Reveal>
+        <div className="flex flex-col items-start gap-8 md:flex-row md:items-center md:justify-between">
+          <div className="max-w-xl">
+            <p className="text-small font-medium uppercase tracking-[0.18em] text-bronze">
+              Ready to begin?
+            </p>
+            <h2 className="mt-4 text-h2">
+              Start your project with a free consultation.
+            </h2>
+            <p className="mt-4 text-body text-mist/80">
+              Tell us what you&apos;re planning — we typically respond within 48
+              hours with next steps.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-4">
+            <Button href="/contact" size="lg">
+              Request a quote
+            </Button>
+            <Button href={links.whatsapp} variant="whatsapp" size="lg">
+              WhatsApp us
+            </Button>
+          </div>
+        </div>
+
+        <p className="mt-8 text-small text-mist/60">
+          Or call us on{" "}
+          <a
+            href={links.tel}
+            className="text-paper underline-offset-4 hover:underline"
+          >
+            {contact.phoneDisplay}
+          </a>
+          .
+        </p>
+      </Reveal>
+    </Section>
+  );
+}
