@@ -65,7 +65,7 @@ export function Header() {
 
           {/* Center — desktop nav (Radix NavigationMenu) */}
           <NavigationMenu.Root
-            className="hidden lg:flex"
+            className="relative hidden lg:flex"
             aria-label="Primary"
           >
             <NavigationMenu.List className="flex items-center gap-1">
@@ -93,7 +93,7 @@ export function Header() {
                           aria-hidden
                         />
                       </NavigationMenu.Trigger>
-                      <NavigationMenu.Content className="absolute left-0 top-full">
+                      <NavigationMenu.Content>
                         <MegaMenu items={item.children} />
                       </NavigationMenu.Content>
                     </>

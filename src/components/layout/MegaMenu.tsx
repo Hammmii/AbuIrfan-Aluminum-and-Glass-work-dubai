@@ -1,48 +1,25 @@
 "use client";
 
-import * as React from "react";
-import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu";
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 import { Icon } from "@/components/icons";
 
+export type MegaMenuItem = { label: string; href: string; blurb?: string };
+export type MegaMenuProps = { items: MegaMenuItem[]; className?: string };
+
 /**
- * MegaMenu.tsx — the Radix NavigationMenu content panel for a nav item's children.
+ * MegaMenu — the link card rendered INSIDE a Radix NavigationMenu.Content.
  *
- * Rendered inside a Radix `<NavigationMenu.Content>`. Lays the child links out in a
- * responsive 2–3 column grid; each cell shows the label (font-display) + optional
- * blurb (text-small text-steel) + an arrow that slides in on hover.
- *
- * Entrance: fade + translateY(-8px → 0), 200ms ease-smooth (≤300ms rule).
- * Reduced-motion: Radix's data-state transitions are disabled by the global
- * `prefers-reduced-motion` media query in globals.css, so no JS branch needed.
- *
- * Accessibility: the parent NavigationMenu (wired in Header) owns the
- * keyboard/focus model; the links here are plain, focusable anchors.
+ * The Header owns the Radix structure (Item → Trigger + Content, and the
+ * Viewport that hosts/animates the active Content). This component must NOT
+ * render its own <Content> — that would nest a Content outside an Item and
+ * throw "NavigationMenuContent must be used within NavigationMenuItem".
  */
-
-export type MegaMenuItem = {
-  label: string;
-  href: string;
-  blurb?: string;
-};
-
-export type MegaMenuProps = {
-  items: MegaMenuItem[];
-  className?: string;
-};
-
 export function MegaMenu({ items, className }: MegaMenuProps) {
   return (
-    <NavigationMenuPrimitive.Content
+    <div
       className={cn(
-        // Paper surface, rounded card, single-layer shadow (RULES §SHADOWS).
-        "absolute left-0 top-full mt-3 w-[min(640px,calc(100vw-2.5rem))] origin-top",
-        "rounded-lg border border-border bg-paper p-3 shadow-card",
-        // Radix data-state drives the enter animation (fade + translate-y).
-        "data-[motion=from-start]:animate-fade-in data-[motion=from-start]:translate-y-[-8px]",
-        "data-[motion=from-end]:animate-fade-in data-[motion=from-end]:translate-y-[-8px]",
-        "data-[state=open]:animate-fade-in",
+        "w-[min(640px,calc(100vw-2.5rem))] rounded-lg border border-border bg-paper p-3 shadow-card",
         className,
       )}
     >
@@ -80,6 +57,6 @@ export function MegaMenu({ items, className }: MegaMenuProps) {
           </li>
         ))}
       </ul>
-    </NavigationMenuPrimitive.Content>
+    </div>
   );
 }
