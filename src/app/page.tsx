@@ -1,101 +1,87 @@
-import Image from "next/image";
+import { Reveal } from "@/components/motion/Reveal";
+import { site, contact, links } from "@/lib/site";
 
-export default function Home() {
+/**
+ * Placeholder Home hero — proves the design-system foundation is live
+ * (tokens, fonts, motion, container). The full Home page sections ship in
+ * Phase 3–4 per PROJECT_PLAN.md §7 Page 1.
+ */
+
+const stats = [
+  { value: "18+", label: "Years of craft" },
+  { value: "2,400+", label: "Projects delivered" },
+  { value: "UAE-wide", label: "Coverage" },
+];
+
+export default function HomePage() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <main className="relative min-h-dvh overflow-hidden">
+      {/* Ambient glass-tint backdrop */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{
+          background:
+            "radial-gradient(120% 80% at 80% 0%, var(--color-glass) 0%, transparent 55%), radial-gradient(90% 70% at 0% 100%, rgba(20,59,73,0.06) 0%, transparent 50%)",
+        }}
+      />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
+      <section className="container-page flex min-h-dvh flex-col justify-center py-32">
+        <Reveal>
+          <span className="eyebrow">{site.tagline}</span>
+        </Reveal>
+
+        <Reveal delay={0.05} className="mt-6 max-w-4xl">
+          <h1 className="text-hero leading-[1.02]">
+            Where light meets
+            <br />
+            <span className="text-brand">precision engineering.</span>
+          </h1>
+        </Reveal>
+
+        <Reveal delay={0.12} className="mt-8 max-w-xl">
+          <p className="text-body-lg text-steel">{site.positioning}</p>
+        </Reveal>
+
+        <Reveal delay={0.18} className="mt-10 flex flex-wrap items-center gap-4">
+          {/* Primary CTA — bronze fill-sweep (signature interaction) */}
           <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href={links.whatsapp}
+            className="group relative inline-flex items-center overflow-hidden rounded-button border border-brand px-7 py-3.5 font-display text-small font-medium text-brand transition-colors duration-300 hover:text-paper"
           >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+            <span
+              aria-hidden
+              className="absolute inset-0 origin-left scale-x-0 bg-bronze transition-transform duration-300 ease-smooth group-hover:scale-x-100"
             />
-            Deploy now
+            <span className="relative z-10">Request a free quote</span>
           </a>
+
+          {/* Secondary ghost CTA */}
           <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href={links.tel}
+            className="group inline-flex items-center gap-2 py-2 font-display text-small font-medium text-interactive transition-colors hover:text-brand"
           >
-            Read our docs
+            <span className="relative">
+              {contact.phoneDisplay}
+              <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-interactive transition-all duration-300 ease-smooth group-hover:w-full" />
+            </span>
           </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        </Reveal>
+
+        {/* Trust strip */}
+        <Reveal delay={0.24} className="mt-16">
+          <dl className="flex flex-wrap items-center gap-x-10 gap-y-6 border-t border-border pt-8">
+            {stats.map((s) => (
+              <div key={s.label} className="flex items-baseline gap-3">
+                <dt className="font-display text-h3 font-semibold text-brand tnum">
+                  {s.value}
+                </dt>
+                <dd className="text-small text-steel">{s.label}</dd>
+              </div>
+            ))}
+          </dl>
+        </Reveal>
+      </section>
+    </main>
   );
 }

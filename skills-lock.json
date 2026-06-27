@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-design/SKILL.md",
+      "computedHash": "4eabc66183767153e404b39d1b839b1c37f2d82d86f0a0d7e880a579d8d62336"
+    },
+    "mcp-creator": {
+      "source": "erichowens/some_claude_skills",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/mcp-creator/SKILL.md",
+      "computedHash": "31d17d5cf20d5d15fa3bc4cbc2029f4d694c5c22e6fc1594ac5fa6526290ee1f"
+    }
+  }
+}

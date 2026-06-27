@@ -1,27 +1,119 @@
+@import "./_fonts.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Color tokens — mirror src/lib/tokens.ts */
+    --color-ink: #0f1419;
+    --color-charcoal: #1b232b;
+    --color-mist: #f4f6f8;
+    --color-paper: #ffffff;
+    --color-glass: #dce6ec;
+    --color-steel: #6b7785;
+    --color-brand: #143b49;
+    --color-brand-bright: #1e6e86;
+    --color-bronze: #b0894f;
+    --color-whatsapp: #2e7d5b;
+    --color-border: rgba(107, 119, 133, 0.2);
+    --color-divider: rgba(176, 137, 79, 0.25);
+
+    --header-height: 80px;
+    --header-height-compact: 56px;
+
+    --background: var(--color-mist);
+    --foreground: var(--color-ink);
+  }
+
+  /* Default border color to the token (Tailwind v3 removed the gray default). */
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    /* Lenis drives smooth scrolling — do not set CSS scroll-behavior. */
+  }
+
+  body {
+    background-color: var(--color-mist);
+    color: var(--color-ink);
+    font-family: "Satoshi", system-ui, -apple-system, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: "Clash Display", sans-serif;
+    font-weight: 600;
+    color: var(--color-ink);
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: var(--color-brand);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-bright);
+    outline-offset: 2px;
+  }
+
+  /* Tabular figures for stats / prices / data. */
+  .tnum {
+    font-variant-numeric: tabular-nums;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Centered page container — max 1280px, generous gutters. */
+  .container-page {
+    @apply mx-auto w-full max-w-page px-5 md:px-8;
+  }
+
+  /* Eyebrow label — uppercase, tracked, steel. Encodes "section label". */
+  .eyebrow {
+    @apply text-small font-medium uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-steel);
+  }
+
+  /* Glass-morphism — ONLY over imagery / dark bands, never text-heavy areas. */
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}
+
+/* Accessibility: honour reduced-motion across ALL animation, not just JS. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }

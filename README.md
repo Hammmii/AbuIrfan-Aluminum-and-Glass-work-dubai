@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Abu Irfan — Glass & Aluminum Co. · Website
 
-## Getting Started
+Premium marketing website for **Abu Irfan for Glass & Aluminum Co.**, Dubai. Design concept: **"Architectural Clarity"** — light, transparent, precisely engineered, quietly premium.
 
-First, run the development server:
+> **Status:** Phase 0 (foundation) complete. Home page proof-of-concept in progress.
+> **Scope (v1):** Home page first, then scale to Services / Projects / About / Contact.
+
+## Stack
+
+Next.js 14 (App Router) · TypeScript (strict) · Tailwind CSS v3 · Framer Motion · GSAP + ScrollTrigger · Lenis · Radix UI · self-hosted Clash Display + Satoshi.
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install        # install dependencies
+npm run dev        # dev server → http://localhost:3000
+npm run build      # production build
+npm run start      # serve the production build
+npm run lint       # eslint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Requires Node 18.17+.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/                  # Next.js App Router (layout, page, globals, fonts)
+├── components/
+│   ├── ui/               # atomic components (Button, Card, …)
+│   ├── layout/           # Header, Footer, MegaMenu, MobileNav
+│   ├── sections/         # page-level section blocks
+│   ├── motion/           # Reveal, SmoothScroll (Lenis+GSAP)
+│   └── icons/            # custom 1.5px monoline SVG system
+├── hooks/                # useReducedMotion, useMagneticHover
+├── lib/                  # tokens, animations, cn, site config
+└── data/                 # services, projects, FAQs (content)
+public/fonts/             # self-hosted woff2 (Clash Display, Satoshi)
+docs/                     # brand briefs, competitor analysis, design system
+PROJECT_PLAN.md           # full production blueprint (single source of truth)
+CLAUDE.md · RULES.md · AGENTS.md   # operating rules
+```
 
-## Learn More
+## Design system
 
-To learn more about Next.js, take a look at the following resources:
+- **Type:** Clash Display (display) · Satoshi (body) · Instrument Serif (pull-quotes)
+- **Brand:** deep teal `#143B49` / interactive `#1E6E86` · bronze accent `#B0894F` (sparingly) · WhatsApp `#2E7D5B`
+- **Motion:** reveal `0.45s` `cubic-bezier(0.22,1,0.36,1)`, 60ms stagger, parallax ≤0.15, all gated on `prefers-reduced-motion`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+All tokens live in `src/lib/tokens.ts` and mirror the CSS variables in `src/app/globals.css`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Documentation
 
-## Deploy on Vercel
+| Doc | Purpose |
+|---|---|
+| `PROJECT_PLAN.md` | Production blueprint — phases, tokens, components, build sequence |
+| `docs/00–06` | Overview, brand, competitors, site structure, content, design brief, UI prompt |
+| `CLAUDE.md` | Operating manual + rules |
+| `RULES.md` | Hard design + code constraints |
+| `AGENTS.md` | Ownership + model strategy |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Git
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Remote: `https://github.com/Hammmii/AbuIrfan-Aluminum-and-Glass-work-dubai.git`
+Conventional Commits, pushed at every milestone. See `CLAUDE.md` → Git & GitHub workflow.
