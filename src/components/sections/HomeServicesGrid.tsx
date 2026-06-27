@@ -2,7 +2,7 @@ import { Section } from "@/components/ui/Section";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
 import { Icon } from "@/components/icons";
 import { ArrowRightIcon } from "@/components/icons/ArrowRightIcon";
-import { services } from "@/data/services";
+import { services, serviceHref } from "@/data/services";
 
 /**
  * HomeServicesGrid — 8 core disciplines in a 4×2 grid (desktop).
@@ -27,7 +27,7 @@ export function HomeServicesGrid() {
         {services.map((s) => (
           <StaggerItem key={s.slug} className="h-full">
             <a
-              href={s.href}
+              href={serviceHref(s.slug)}
               className="group flex h-full flex-col bg-paper p-7 transition-colors duration-300 ease-smooth hover:bg-mist"
             >
               <Icon name={s.iconName} size={28} className="text-brand" />

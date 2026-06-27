@@ -51,30 +51,31 @@ export type NavItem = {
   children?: { label: string; href: string; blurb?: string }[];
 };
 
-/** Primary navigation (kept shallow for the Home-page proof; expand later). */
+/** Primary navigation. Service hubs resolve to /services; details to /services/[slug]. */
 export const nav: NavItem[] = [
   { label: "Home", href: "/" },
   {
     label: "Glass Solutions",
-    href: "/glass-solutions",
+    href: "/services",
     children: [
-      { label: "Glass Rooms", href: "/glass-rooms", blurb: "Year-round light-filled extensions" },
-      { label: "Aluminium Pergolas", href: "/aluminium-pergolas", blurb: "Shade structures for villas & terraces" },
-      { label: "Glass Skylights", href: "/glass-skylights", blurb: "Roof glazing that floods interiors with light" },
-      { label: "Conservatory Rooms", href: "/conservatory-rooms", blurb: "Glass-enclosed indoor-outdoor retreats" },
-      { label: "Sun Rooms", href: "/sun-rooms", blurb: "Climate-controlled sun-drenched spaces" },
+      { label: "Glass Rooms", href: "/services/glass-rooms", blurb: "Year-round light-filled extensions" },
+      { label: "Aluminium Pergolas", href: "/services/aluminium-pergolas", blurb: "Shade structures for villas & terraces" },
+      { label: "Glass Skylights", href: "/services/glass-skylights", blurb: "Roof glazing that floods interiors with light" },
+      { label: "Conservatory Rooms", href: "/services/conservatory-rooms", blurb: "Glass-enclosed indoor-outdoor retreats" },
+      { label: "Sun Rooms", href: "/services/sun-rooms", blurb: "Climate-controlled sun-drenched spaces" },
+      { label: "Smart Glass", href: "/services/smart-glass", blurb: "Switchable privacy glass" },
     ],
   },
   {
     label: "Aluminum & Glazing",
-    href: "/aluminum-glazing",
+    href: "/services",
     children: [
-      { label: "Doors & Windows", href: "/doors-and-windows" },
-      { label: "Glass Partitions", href: "/glass-partitions" },
-      { label: "Curtain Walls & Facades", href: "/curtain-walls" },
-      { label: "Glass Types", href: "/glass-types" },
-      { label: "ACP Cladding", href: "/acp-cladding" },
-      { label: "Aluminum Systems", href: "/aluminum-systems" },
+      { label: "Doors & Windows", href: "/services/doors-and-windows" },
+      { label: "Glass Partitions", href: "/services/glass-partitions" },
+      { label: "Curtain Walls & Facades", href: "/services/curtain-walls" },
+      { label: "Glass Types", href: "/services/glass-types" },
+      { label: "ACP Cladding", href: "/services/acp-cladding" },
+      { label: "Aluminum Systems", href: "/services/aluminum-systems" },
     ],
   },
   { label: "Projects", href: "/projects" },
