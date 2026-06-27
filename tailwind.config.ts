@@ -27,7 +27,7 @@ const config: Config = {
         },
         interactive: "var(--color-brand-bright)",
         bronze: "var(--color-bronze)",
-        whatsapp: "var(--color-whatsapp)",
+        call: "var(--color-call)",
         border: "var(--color-border)",
         divider: "var(--color-divider)",
         // Keep framework defaults usable

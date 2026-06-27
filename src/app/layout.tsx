@@ -33,7 +33,9 @@ export const metadata: Metadata = {
     "ACP cladding Dubai",
     "Abu Irfan",
   ],
-  authors: [{ name: "Abu Irfan for Glass & Aluminum Co." }],
+  authors: [
+    { name: "ABU IRFAN FOR GLASS & ALUMINUM INSTALLATION & MAINTENANCE EST." },
+  ],
   openGraph: {
     type: "website",
     url: SITE_URL,

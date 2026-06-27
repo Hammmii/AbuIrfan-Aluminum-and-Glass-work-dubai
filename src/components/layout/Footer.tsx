@@ -13,11 +13,10 @@ import { Button } from "@/components/ui/Button";
  *  3 Company — Home/Projects/About/Contact + Careers mailto.
  *  4 Contact — phone (click-to-call), 3 labelled emails, address, hours.
  *
- * A top CTA row ("Request a free quote" + WhatsApp Button) sits above the grid.
+ * A top CTA row ("Request a free quote" + Call Button) sits above the grid.
  *
  * Year: `new Date().getFullYear()` is evaluated by Next at build time for a
- * statically-rendered server component — acceptable per the task spec. No hooks,
- * no client JS, so this remains static.
+ * statically-rendered server component — acceptable per the task spec.
  */
 
 const companyLinks: { label: string; href: string }[] = [
@@ -52,8 +51,8 @@ export function Footer() {
               Request a free quote
             </p>
           </div>
-          <Button href={links.whatsapp} variant="whatsapp" size="md">
-            Chat on WhatsApp
+          <Button href={links.tel} variant="call" size="md">
+            Call us
           </Button>
         </div>
 
@@ -100,10 +99,7 @@ export function Footer() {
                 </li>
               ))}
               <li>
-                <a
-                  href={links.mail("hr")}
-                  className={footerLinkClass}
-                >
+                <a href={links.mail("hr")} className={footerLinkClass}>
                   Careers
                 </a>
               </li>
@@ -161,8 +157,8 @@ export function Footer() {
 
         {/* Bottom strip */}
         <div className="flex flex-col items-start justify-between gap-3 border-t border-border pt-6 md:flex-row md:items-center">
-          <p className="text-caption text-steel">
-            &copy; {year} Abu Irfan for Glass &amp; Aluminum Co.
+          <p className="max-w-md text-caption text-steel">
+            &copy; {year} {site.name}
           </p>
           <div className="flex items-center gap-4">
             <span className="text-caption text-steel">Dubai, UAE</span>

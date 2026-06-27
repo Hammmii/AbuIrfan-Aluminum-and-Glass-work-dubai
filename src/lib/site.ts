@@ -1,12 +1,17 @@
 /**
  * site.ts — Business + navigation config (source of truth for contact info).
  * Open items flagged in PROJECT_PLAN still pending client confirmation:
- *  - WhatsApp mobile number (the landline below is NOT a wa.me number)
- *  - Single vs two addresses (Port Saeed vs Jebel Ali) + Maps pins
+ *  - Confirm single vs two addresses (Port Saeed vs Jebel Ali) + Maps pins
+ *  - Confirm business hours
+ *
+ * Note: WhatsApp was removed per client direction — all conversion CTAs route
+ * to a phone call (tel:) or the /contact quote form.
  */
 
 export const site = {
-  name: "Abu Irfan for Glass & Aluminum Co.",
+  /** Full legal name (use in footer/legal/metadata). */
+  name: "ABU IRFAN FOR GLASS & ALUMINUM INSTALLATION & MAINTENANCE EST.",
+  /** Short brand mark (logo lockup). */
   shortName: "Abu Irfan",
   domain: "abuirfan.com",
   url: "https://abuirfan.com",
@@ -18,10 +23,6 @@ export const site = {
 export const contact = {
   phoneDisplay: "+971 4 259 9536",
   phoneHref: "+97142599536",
-  // TODO(client): replace with the actual WhatsApp mobile number.
-  whatsappNumber: "97142599536",
-  whatsappMessage:
-    "Hi Abu Irfan, I'd like to request a free quote for a glass & aluminum project.",
   emails: {
     general: "info@abuirfan.com",
     hr: "hr@abuirfan.com",
@@ -39,9 +40,8 @@ export const links = {
   tel: `tel:${contact.phoneHref}`,
   mail: (to: keyof typeof contact.emails = "general") =>
     `mailto:${contact.emails[to]}`,
-  whatsapp: `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(
-    contact.whatsappMessage,
-  )}`,
+  /** Quote form route (built in Phase 7). */
+  quote: "/contact",
 } as const;
 
 export type NavItem = {

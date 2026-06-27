@@ -1,28 +1,24 @@
 "use client";
 
-import * as React from "react";
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 import { links } from "@/lib/site";
 import { Icon } from "@/components/icons";
 
 /**
- * MobileCtaBar.tsx — sticky bottom call-to-action bar, MOBILE ONLY (`lg:hidden`).
+ * MobileCtaBar — sticky bottom call-to-action bar, MOBILE ONLY (`lg:hidden`).
  *
- * Three equal-width buttons: Call / WhatsApp / Get Quote. Fixed to the bottom
- * edge, paper/blur surface, top border. All transitions ≤300ms ease-smooth.
- *
- * The WhatsApp button uses the whatsapp-green token; the others are tonal.
- * Icon-only affordances carry aria-labels.
+ * Two equal-width buttons: Call (tel:) / Get Quote (/contact). Fixed to the
+ * bottom edge, paper/blur surface, top border. Transitions ≤300ms ease-smooth.
+ * Icon affordances carry aria-labels.
  */
-
 export function MobileCtaBar() {
   return (
     <div
       className={cn(
         "fixed inset-x-0 bottom-0 z-40 lg:hidden",
         "border-t border-border bg-paper/95 backdrop-blur-glass",
-        "grid grid-cols-3",
+        "grid grid-cols-2",
       )}
     >
       {/* Call */}
@@ -31,33 +27,18 @@ export function MobileCtaBar() {
         aria-label="Call Abu Irfan"
         className={cn(
           "flex flex-col items-center justify-center gap-0.5 py-2.5",
-          "font-display text-caption font-medium text-steel",
-          "transition-colors duration-300 ease-smooth hover:text-ink",
-          "focus-visible:outline-2 focus-visible:outline-brand-bright",
-        )}
-      >
-        <Icon name="phone" size={20} className="text-brand" />
-        Call
-      </Link>
-
-      {/* WhatsApp */}
-      <Link
-        href={links.whatsapp}
-        aria-label="Message Abu Irfan on WhatsApp"
-        className={cn(
-          "flex flex-col items-center justify-center gap-0.5 border-x border-border py-2.5",
-          "font-display text-caption font-medium text-whatsapp",
+          "font-display text-caption font-medium text-call",
           "transition-colors duration-300 ease-smooth hover:brightness-95",
           "focus-visible:outline-2 focus-visible:outline-brand-bright",
         )}
       >
-        <Icon name="whatsapp" size={20} />
-        WhatsApp
+        <Icon name="phone" size={20} />
+        Call
       </Link>
 
       {/* Get Quote */}
       <Link
-        href="/contact"
+        href={links.quote}
         aria-label="Request a free quote"
         className={cn(
           "flex flex-col items-center justify-center gap-0.5 py-2.5",

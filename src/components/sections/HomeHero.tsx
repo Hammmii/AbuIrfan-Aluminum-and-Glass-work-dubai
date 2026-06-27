@@ -90,7 +90,7 @@ export function HomeHero() {
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: EASE, delay: 0.5 }}
           >
-            <Button href={links.whatsapp} size="lg">
+            <Button href={links.quote} size="lg">
               Request a free quote
             </Button>
             <Button href={links.tel} variant="secondary" size="lg" magnetic={false}>

@@ -153,8 +153,8 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
                 <Icon name="phone" size={18} className="text-brand" />
                 {contact.phoneDisplay}
               </a>
-              <Button href={links.whatsapp} variant="whatsapp" size="md" className="w-full">
-                WhatsApp Us
+              <Button href={links.tel} variant="call" size="md" className="w-full">
+                Call us
               </Button>
             </div>
           </div>

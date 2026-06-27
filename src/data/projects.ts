@@ -1,10 +1,8 @@
 export type ProjectCategory =
   | "Glass Rooms"
   | "Pergolas"
-  | "Skylights"
   | "Partitions"
-  | "Commercial"
-  | "Hospitality";
+  | "Commercial";
 
 export type Project = {
   slug: string;
@@ -21,8 +19,9 @@ export type Project = {
 };
 
 /**
- * Featured projects for the Home showcase. Replace imagery + specifics with
- * real client case studies when supplied (PROJECT_PLAN §12).
+ * Featured projects for the Home showcase. Kept to a small set on purpose —
+ * each entry is one photo the client will source. Replace imagery + specifics
+ * with real case studies when supplied (see docs/IMAGES.md).
  */
 export const projects: Project[] = [
   {
@@ -65,26 +64,6 @@ export const projects: Project[] = [
     materials: ["Toughened glass", "PDLC smart film"],
     featured: true,
   },
-  {
-    slug: "emirates-hills-skylight",
-    name: "Villa Skylight Atrium",
-    location: "Emirates Hills",
-    category: "Skylights",
-    year: 2024,
-    scope: ["Structural opening", "Skylight glazing"],
-    materials: ["Laminated safety glass", "Self-cleaning coating"],
-    featured: true,
-  },
-  {
-    slug: "marina-hotel-cladding",
-    name: "Boutique Hotel Cladding",
-    location: "Dubai Marina",
-    category: "Hospitality",
-    year: 2023,
-    scope: ["Facade design", "ACP fabrication", "Install"],
-    materials: ["Fire-rated ACP", "Dual-colour finish"],
-    featured: true,
-  },
 ];
 
 export const projectFilters: ("All" | ProjectCategory)[] = [
@@ -92,5 +71,5 @@ export const projectFilters: ("All" | ProjectCategory)[] = [
   "Glass Rooms",
   "Pergolas",
   "Commercial",
-  "Hospitality",
+  "Partitions",
 ];

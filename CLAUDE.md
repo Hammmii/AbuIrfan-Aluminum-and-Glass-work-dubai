@@ -4,7 +4,7 @@
 
 ## Project context
 
-Premium, information-led **marketing website** for **Abu Irfan for Glass & Aluminum Co.** — a Dubai-based glass & aluminum design, fabrication and installation company. This is **not** e-commerce. Goals: establish premium credibility, capture qualified leads (quote / call / WhatsApp), rank locally.
+Premium, information-led **marketing website** for **ABU IRFAN FOR GLASS & ALUMINUM INSTALLATION & MAINTENANCE EST.** — a Dubai-based glass & aluminum design, fabrication, installation & maintenance company. This is **not** e-commerce. Goals: establish premium credibility, capture qualified leads (quote / call), rank locally.
 
 **North Star — "Architectural Clarity."** The site should feel like the product: light passing through precisely engineered glass, brushed-metal edges, quiet confidence. No noise, no hype, just craft.
 
@@ -28,7 +28,7 @@ Full briefs live in `PROJECT_PLAN.md` and `docs/`. This file is the rulebook.
 7. Mobile-first: build the mobile layout, then enhance for desktop.
 8. TypeScript strict, no `any`. No inline styles except dynamically-calculated transforms (parallax).
 9. `next/image` for all images (explicit width/height or `fill` + `sizes`).
-10. WhatsApp + "Request a free quote" CTAs reachable from every page.
+10. A phone **Call** CTA (`tel:`) + "Request a free quote" reachable from every page. (WhatsApp removed per client direction — no messaging integration.)
 
 ## File creation rules
 

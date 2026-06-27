@@ -1,12 +1,12 @@
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/motion/Reveal";
-import { contact, links } from "@/lib/site";
+import { links } from "@/lib/site";
 
 /**
  * HomeCTABand — primary conversion band.
- * Charcoal band, headline + supporting copy, quote + WhatsApp CTAs, phone
- * reassurance. Mirrored at the foot of every page later.
+ * Charcoal band, headline + supporting copy, quote + call CTAs.
+ * Mirrored at the foot of every page later.
  */
 export function HomeCTABand() {
   return (
@@ -27,25 +27,14 @@ export function HomeCTABand() {
           </div>
 
           <div className="flex flex-wrap items-center gap-4">
-            <Button href="/contact" size="lg">
+            <Button href={links.quote} size="lg">
               Request a quote
             </Button>
-            <Button href={links.whatsapp} variant="whatsapp" size="lg">
-              WhatsApp us
+            <Button href={links.tel} variant="call" size="lg">
+              Call now
             </Button>
           </div>
         </div>
-
-        <p className="mt-8 text-small text-mist/60">
-          Or call us on{" "}
-          <a
-            href={links.tel}
-            className="text-paper underline-offset-4 hover:underline"
-          >
-            {contact.phoneDisplay}
-          </a>
-          .
-        </p>
       </Reveal>
     </Section>
   );

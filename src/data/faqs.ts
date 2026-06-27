@@ -23,7 +23,7 @@ export const faqs: FAQ[] = [
     category: "general",
     question: "How do I get a quote?",
     answer:
-      "Send us your requirements via the quote form, phone or WhatsApp. We'll review the scope and come back — typically within 48 hours — with next steps and an indication of cost.",
+      "Send us your requirements via the quote form or by phone. We'll review the scope and come back — typically within 48 hours — with next steps and an indication of cost.",
   },
   {
     category: "general",

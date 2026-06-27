@@ -14,10 +14,8 @@ import {
 const toneFor: Record<ProjectCategory, string> = {
   "Glass Rooms": "from-glass to-brand/30",
   Pergolas: "from-brand/20 to-bronze/30",
-  Skylights: "from-glass to-bronze/25",
   Partitions: "from-brand/10 to-glass",
   Commercial: "from-charcoal to-brand/40",
-  Hospitality: "from-bronze/25 to-charcoal/60",
 };
 
 /**

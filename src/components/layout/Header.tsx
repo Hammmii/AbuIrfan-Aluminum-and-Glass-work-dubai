@@ -138,7 +138,7 @@ export function Header() {
               {contact.phoneDisplay}
             </a>
 
-            <Button href={links.whatsapp} size="sm" variant="primary">
+            <Button href={links.quote} size="sm" variant="primary">
               Free Quote
             </Button>
 

@@ -22,7 +22,7 @@ export const colors = {
 
   // Accents
   bronze: "#B0894F", // premium metallic accent — use SPARINGLY
-  whatsapp: "#2E7D5B", // WhatsApp / success states
+  call: "#2E7D5B", // Call / success states (primary phone-CTA green)
 
   // Functional
   border: "rgba(107, 119, 133, 0.2)",
@@ -60,7 +60,7 @@ export const radii = {
   button: "6px",
   card: "12px",
   cardLg: "16px",
-  pill: "999px", // WhatsApp button only
+  pill: "999px", // Call button only
 } as const;
 
 /** Shadows: max ONE layer, max 12px blur. No stacked shadows. */
@@ -71,7 +71,7 @@ export const shadows = {
 } as const;
 
 export const easing = {
-  smooth: "cubic-bezier(0.22, 1, 0.36, 1)", // primary — reveal, hover
+  smooth: "cubic-bezier(0.22, 1, 0.36, 1)", // primary — reveal, hover (CSS form)
   out: "cubic-bezier(0.0, 0, 0.2, 1)",
   in: "cubic-bezier(0.4, 0, 1, 1)",
 } as const;

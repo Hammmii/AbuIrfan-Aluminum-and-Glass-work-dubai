@@ -35,7 +35,6 @@ import { ClimateDustIcon } from "./ClimateDustIcon";
 import { ClimateUvIcon } from "./ClimateUvIcon";
 import { ClimateHumidityIcon } from "./ClimateHumidityIcon";
 import { PhoneIcon } from "./PhoneIcon";
-import { WhatsappIcon } from "./WhatsappIcon";
 import { MailIcon } from "./MailIcon";
 import { ArrowRightIcon } from "./ArrowRightIcon";
 import { ArrowUpRightIcon } from "./ArrowUpRightIcon";
@@ -71,7 +70,6 @@ export {
   ClimateUvIcon,
   ClimateHumidityIcon,
   PhoneIcon,
-  WhatsappIcon,
   MailIcon,
   ArrowRightIcon,
   ArrowUpRightIcon,
@@ -106,7 +104,6 @@ export type IconName =
   | "climate-uv"
   | "climate-humidity"
   | "phone"
-  | "whatsapp"
   | "mail"
   | "arrow-right"
   | "arrow-up-right"
@@ -153,7 +150,6 @@ export const NAME_TO_ICON: Record<IconName, IconComponentType> = {
   "climate-uv": ClimateUvIcon,
   "climate-humidity": ClimateHumidityIcon,
   phone: PhoneIcon,
-  whatsapp: WhatsappIcon,
   mail: MailIcon,
   "arrow-right": ArrowRightIcon,
   "arrow-up-right": ArrowUpRightIcon,

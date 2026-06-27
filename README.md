@@ -1,6 +1,6 @@
-# Abu Irfan — Glass & Aluminum Co. · Website
+# Abu Irfan — Glass & Aluminum · Website
 
-Premium marketing website for **Abu Irfan for Glass & Aluminum Co.**, Dubai. Design concept: **"Architectural Clarity"** — light, transparent, precisely engineered, quietly premium.
+Premium marketing website for **ABU IRFAN FOR GLASS & ALUMINUM INSTALLATION & MAINTENANCE EST.**, Dubai. Design concept: **"Architectural Clarity"** — light, transparent, precisely engineered, quietly premium.
 
 > **Status:** Phase 0 (foundation) complete. Home page proof-of-concept in progress.
 > **Scope (v1):** Home page first, then scale to Services / Projects / About / Contact.
@@ -44,7 +44,7 @@ CLAUDE.md · RULES.md · AGENTS.md   # operating rules
 ## Design system
 
 - **Type:** Clash Display (display) · Satoshi (body) · Instrument Serif (pull-quotes)
-- **Brand:** deep teal `#143B49` / interactive `#1E6E86` · bronze accent `#B0894F` (sparingly) · WhatsApp `#2E7D5B`
+- **Brand:** deep teal `#143B49` / interactive `#1E6E86` · bronze accent `#B0894F` (sparingly) · Call `#2E7D5B`
 - **Motion:** reveal `0.45s` `cubic-bezier(0.22,1,0.36,1)`, 60ms stagger, parallax ≤0.15, all gated on `prefers-reduced-motion`
 
 All tokens live in `src/lib/tokens.ts` and mirror the CSS variables in `src/app/globals.css`.

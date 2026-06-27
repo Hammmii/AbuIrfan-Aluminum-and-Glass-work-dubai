@@ -6,7 +6,7 @@ Non-negotiable design + code constraints. Every component must pass these before
 
 - **COLOR:** Only tokens from the palette in `src/lib/tokens.ts` (mirrored as CSS vars in `globals.css`). No opacity hacks to invent new colors. No hardcoded hex in components.
 - **TYPOGRAPHY:** Clash Display (headings) + Satoshi (body) + Instrument Serif (pull-quotes only). Self-hosted via `@font-face`.
-- **RADII:** inputs `4px`, buttons `6px`, cards `12px`, card-large `16px`. Full pill (`999px`) is the WhatsApp button only.
+- **RADII:** inputs `4px`, buttons `6px`, cards `12px`, card-large `16px`. Full pill (`999px`) is the Call button only.
 - **SHADOWS:** max one layer, max 12px blur. No stacked shadows.
 - **GLASSMORPHISM:** `backdrop-blur` only over imagery / dark bands. NEVER on white / light / text-heavy areas.
 - **ICONS:** only custom SVGs in `src/components/icons/`. 1.5px stroke, `currentColor`, `viewBox="0 0 24 24"`, no fill. No Lucide / Font Awesome / emoji.

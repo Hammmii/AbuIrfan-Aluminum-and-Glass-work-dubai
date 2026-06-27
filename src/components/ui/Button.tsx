@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/cn";
 import { useMagnetic } from "@/hooks/useMagneticHover";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
-import { WhatsappIcon } from "@/components/icons/WhatsappIcon";
+import { PhoneIcon } from "@/components/icons/PhoneIcon";
 
 /**
  * Button.tsx — the signature Abu Irfan CTA.
@@ -22,24 +22,25 @@ import { WhatsappIcon } from "@/components/icons/WhatsappIcon";
  *
  *  ghost     — steel text on a subtle border; hover → ink text + stronger border.
  *
- *  whatsapp  — whatsapp-green pill (`rounded-pill`) with paper text + a
- *              `<WhatsappIcon />`. A subtle `animate-pulse-ring` plays on hover
- *              (the keyframe already lives in tailwind.config.ts).
+ *  call      — call-green pill (`rounded-pill`) with paper text + a
+ *              `<PhoneIcon />`. A subtle `animate-pulse-ring` plays on hover
+ *              (the keyframe already lives in tailwind.config.ts). Use for
+ *              tel: "Call now" CTAs.
  *
- * `magnetic` (default true for primary & whatsapp) wires the `useMagnetic` hook,
+ * `magnetic` (default true for primary & call) wires the `useMagnetic` hook,
  * which is automatically disabled when `useReducedMotion()` is true.
  *
  * Renders an `<a>` when `href` is provided, otherwise a `<button>`.
  */
 
-export type ButtonVariant = "primary" | "secondary" | "ghost" | "whatsapp";
+export type ButtonVariant = "primary" | "secondary" | "ghost" | "call";
 export type ButtonSize = "sm" | "md" | "lg";
 
 export type ButtonProps = {
   variant?: ButtonVariant;
   size?: ButtonSize;
   href?: string;
-  /** Apply the magnetic-hover drift. Defaults true for primary & whatsapp. */
+  /** Apply the magnetic-hover drift. Defaults true for primary & call. */
   magnetic?: boolean;
   className?: string;
   children: React.ReactNode;
@@ -136,16 +137,16 @@ function renderVariant(
         </span>
       );
 
-    case "whatsapp":
+    case "call":
       return (
         <span
           className={cn(
-            "group inline-flex items-center justify-center gap-2 rounded-pill bg-whatsapp font-display font-medium text-paper transition-colors duration-300 ease-smooth hover:animate-pulse-ring",
+            "group inline-flex items-center justify-center gap-2 rounded-pill bg-call font-display font-medium text-paper transition-colors duration-300 ease-smooth hover:animate-pulse-ring",
             sizeFor[size],
             className,
           )}
         >
-          <WhatsappIcon size={16} className="shrink-0" />
+          <PhoneIcon size={16} className="shrink-0" />
           <span>{children}</span>
         </span>
       );
@@ -169,7 +170,7 @@ export function Button({
   ...rest
 }: ButtonProps) {
   const reduce = useReducedMotion();
-  const enableMagnetic = (magnetic ?? (variant === "primary" || variant === "whatsapp")) && !reduce;
+  const enableMagnetic = (magnetic ?? (variant === "primary" || variant === "call")) && !reduce;
 
   // The hook generic is inferred from which element we render. We keep two
   // instances so each branch returns the correctly-typed ref + handlers.
