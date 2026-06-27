@@ -8,11 +8,16 @@
  * - Hover: max 300ms, no spring bounce.
  * - Every variant must degrade gracefully when prefers-reduced-motion is set
  *   (handled by the <Reveal> wrapper / useReducedMotion, not duplicated here).
+ *
+ * NOTE: Framer Motion's `ease` requires a NUMERIC cubic-bezier tuple
+ * `[x1, y1, x2, y2]` — NOT the CSS string `"cubic-bezier(...)"`. The string
+ * form lives in tokens.ts `easing.smooth` for CSS transitions only.
  */
 
-import { easing, animation } from "./tokens";
+import { animation } from "./tokens";
 
-const SMOOTH = easing.smooth as unknown as [number, number, number, number];
+/** Primary easing for all Framer transitions (numeric tuple, not CSS string). */
+const SMOOTH: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 /** Fade + rise on enter. The workhorse reveal. */
 export const fadeUp = {
