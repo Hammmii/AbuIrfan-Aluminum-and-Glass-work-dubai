@@ -5,6 +5,23 @@ import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileCtaBar } from "@/components/layout/MobileCtaBar";
+import { site, contact } from "@/lib/site";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "GeneralContractor",
+  name: site.name,
+  url: site.url,
+  telephone: contact.phoneDisplay,
+  email: contact.emails.general,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: contact.address.line,
+    addressLocality: "Dubai",
+    addressCountry: "AE",
+  },
+  areaServed: "United Arab Emirates",
+};
 
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
@@ -69,6 +86,10 @@ export default function RootLayout({
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
       <body>
