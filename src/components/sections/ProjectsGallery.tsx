@@ -3,28 +3,15 @@
 import { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { motion, AnimatePresence } from "framer-motion";
-import { cn } from "@/lib/cn";
 import { CloseIcon } from "@/components/icons/CloseIcon";
 import { ArrowUpRightIcon } from "@/components/icons/ArrowUpRightIcon";
-import {
-  projects,
-  projectFilters,
-  type Project,
-  type ProjectCategory,
-} from "@/data/projects";
-
-const toneFor: Record<ProjectCategory, string> = {
-  "Glass Rooms": "from-glass to-brand/30",
-  Pergolas: "from-brand/20 to-bronze/30",
-  Partitions: "from-brand/10 to-glass",
-  Commercial: "from-charcoal to-brand/40",
-};
+import { ProjectThumb } from "@/components/sections/ProjectThumb";
+import { projects, projectFilters, type Project, type ProjectCategory } from "@/data/projects";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 /**
- * ProjectsGallery — filterable grid with a Radix Dialog lightbox.
- * Real photography pending; cards + lightbox render gradient placeholders.
+ * ProjectsGallery — filterable grid + Radix Dialog lightbox (/projects page).
  */
 export function ProjectsGallery() {
   const [filter, setFilter] = useState<"All" | ProjectCategory>("All");
@@ -73,17 +60,10 @@ export function ProjectsGallery() {
               transition={{ duration: 0.35, ease: EASE }}
               className="group relative block overflow-hidden rounded-lg border border-border text-left"
             >
-              <div
-                className={`aspect-[4/3] w-full bg-gradient-to-br ${toneFor[p.category]}`}
-              >
-                <div
-                  aria-hidden
-                  className="h-full w-full opacity-30"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(to right, rgba(255,255,255,0.25) 1px, transparent 1px)",
-                    backgroundSize: "25% 100%",
-                  }}
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-glass">
+                <ProjectThumb
+                  project={p}
+                  className="transition-transform duration-500 ease-smooth group-hover:scale-[1.03]"
                 />
               </div>
               <span className="absolute left-4 top-4 rounded-pill bg-paper/90 px-3 py-1 text-caption font-medium uppercase tracking-[0.04em] text-ink backdrop-blur">
@@ -106,37 +86,21 @@ export function ProjectsGallery() {
       </motion.div>
 
       {/* Lightbox */}
-      <Dialog.Root
-        open={!!active}
-        onOpenChange={(o) => !o && setActive(null)}
-      >
+      <Dialog.Root open={!!active} onOpenChange={(o) => !o && setActive(null)}>
         <Dialog.Portal>
-          <Dialog.Overlay className="fixed inset-0 z-[70] bg-charcoal/70 backdrop-blur-sm data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out" />
+          <Dialog.Overlay className="fixed inset-0 z-[70] bg-charcoal/70 backdrop-blur-sm data-[state=open]:animate-fade-in" />
           <Dialog.Content
             className="fixed left-1/2 top-1/2 z-[71] w-[min(960px,calc(100vw-2rem))] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-lg border border-border bg-paper shadow-card-hover focus:outline-none"
             aria-describedby={undefined}
           >
             <div className="grid md:grid-cols-2">
               {/* Visual */}
-              <div
-                className={cn(
-                  "relative aspect-[4/3] md:aspect-auto bg-gradient-to-br",
-                  active ? toneFor[active.category] : "",
-                )}
-              >
-                <div
-                  aria-hidden
-                  className="absolute inset-0 opacity-30"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(to right, rgba(255,255,255,0.25) 1px, transparent 1px)",
-                    backgroundSize: "20% 100%",
-                  }}
-                />
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-glass md:aspect-auto md:min-h-[420px]">
+                {active && <ProjectThumb project={active} />}
               </div>
 
               {/* Details */}
-              <div className="p-7 md:p-9">
+              <div className="relative p-7 md:p-9">
                 <Dialog.Close asChild>
                   <button
                     type="button"
@@ -150,9 +114,7 @@ export function ProjectsGallery() {
                 <span className="inline-flex rounded-pill border border-border px-3 py-1 text-caption font-medium uppercase tracking-[0.04em] text-bronze">
                   {active?.category}
                 </span>
-                <Dialog.Title className="mt-4 text-h2">
-                  {active?.name}
-                </Dialog.Title>
+                <Dialog.Title className="mt-4 text-h2">{active?.name}</Dialog.Title>
                 <Dialog.Description className="mt-2 text-small text-steel">
                   {active?.location} · {active?.year}
                 </Dialog.Description>

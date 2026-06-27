@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { site, contact, links } from "@/lib/site";
@@ -17,9 +18,8 @@ const stats = [
 /**
  * HomeHero — the thesis of the site.
  *
- * Layout: asymmetric — editorial text left, an architectural "glass facade"
- * visual right (a CSS mullion grid + glass tint + single shimmer sweep;
- * real photography is swapped in when the client supplies assets).
+ * Layout: asymmetric — editorial text left, an architectural glass-interior
+ * photo right (with a single light-refraction shimmer sweep + bronze edge).
  *
  * Motion: sequenced entrance on mount (eyebrow → headline → body → CTAs →
  * stats), then a slow parallax on scroll (12% visual / -6% text). All
@@ -115,7 +115,7 @@ export function HomeHero() {
           </motion.dl>
         </motion.div>
 
-        {/* Visual column — architectural glass-facade composition */}
+        {/* Visual column — real architectural glass-interior photo */}
         <motion.div
           className="relative hidden lg:block"
           style={reduce ? undefined : { y: yVisual }}
@@ -125,22 +125,13 @@ export function HomeHero() {
           aria-hidden
         >
           <div className="relative aspect-[4/5] w-full overflow-hidden rounded-lg border border-border bg-glass">
-            {/* Mullion grid — vertical + horizontal hairlines */}
-            <div
-              className="absolute inset-0 opacity-60"
-              style={{
-                backgroundImage:
-                  "linear-gradient(to right, rgba(20,59,73,0.10) 1px, transparent 1px), linear-gradient(to bottom, rgba(20,59,73,0.10) 1px, transparent 1px)",
-                backgroundSize: "33.333% 25%",
-              }}
-            />
-            {/* Glass tint + depth */}
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  "linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(220,230,236,0.2) 45%, rgba(20,59,73,0.18) 100%)",
-              }}
+            <Image
+              src="/images/hero.jpg"
+              alt="Bright minimal interior with a glass desk beside a floor-to-ceiling window — precision glass & aluminium work."
+              fill
+              priority
+              sizes="45vw"
+              className="object-cover"
             />
             {/* Single light-refraction shimmer sweep */}
             {!reduce && (
@@ -148,7 +139,7 @@ export function HomeHero() {
                 <div className="absolute inset-0 animate-shimmer bg-[linear-gradient(105deg,transparent_40%,rgba(255,255,255,0.35)_50%,transparent_60%)]" />
               </div>
             )}
-            {/* Bronze accent frame edge */}
+            {/* Bronze accent edge */}
             <div className="absolute inset-x-0 bottom-0 h-1 bg-bronze/70" />
           </div>
 
