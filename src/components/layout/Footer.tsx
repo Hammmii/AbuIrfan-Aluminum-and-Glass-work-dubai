@@ -3,6 +3,7 @@ import { cn } from "@/lib/cn";
 import { site, contact, links, nav } from "@/lib/site";
 import { Icon } from "@/components/icons";
 import { Button } from "@/components/ui/Button";
+import { Logo } from "@/components/ui/Logo";
 
 /**
  * Footer.tsx — site footer (SERVER component, no "use client").
@@ -60,14 +61,7 @@ export function Footer() {
         <div className="grid grid-cols-2 gap-8 py-10 md:grid-cols-4 md:gap-6">
           {/* Col 1 — Brand */}
           <div className="col-span-2 md:col-span-1">
-            <div className="flex flex-col leading-none">
-              <span className="font-display text-h3 font-semibold tracking-tight text-ink">
-                ABU IRFAN
-              </span>
-              <span className="text-caption uppercase tracking-[0.2em] text-steel">
-                Glass &amp; Aluminum
-              </span>
-            </div>
+            <Logo />
             <p className="mt-4 max-w-xs text-small text-steel">
               {site.positioning}
             </p>

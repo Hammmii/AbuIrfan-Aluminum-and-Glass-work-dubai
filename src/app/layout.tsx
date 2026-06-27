@@ -94,6 +94,12 @@ export default function RootLayout({
       </head>
       <body>
         <SmoothScroll>
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-paper focus:px-4 focus:py-2 focus:text-ink focus:shadow-card focus:outline-none"
+          >
+            Skip to content
+          </a>
           <Header />
           <main id="main">{children}</main>
           <Footer />

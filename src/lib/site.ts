@@ -29,8 +29,7 @@ export const contact = {
     sales: "usama@abuirfan.com",
   },
   address: {
-    line: "Port Saeed, Jebel Ali, Dubai, UAE",
-    // TODO(client): confirm one or two locations + exact street/plot + Maps link.
+    line: "Port Saeed, Dubai, UAE",
   },
   hours: "Sun–Thu, 9:00–18:00 (GST)",
 } as const;

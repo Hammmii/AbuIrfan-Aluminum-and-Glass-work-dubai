@@ -3,26 +3,25 @@
 import * as React from "react";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/cn";
 import { nav, contact, links, type NavItem } from "@/lib/site";
 import { Icon } from "@/components/icons";
 import { Button } from "@/components/ui/Button";
+import { Logo } from "@/components/ui/Logo";
 import { MegaMenu } from "./MegaMenu";
 import { MobileNav } from "./MobileNav";
 
 /**
  * Header.tsx — sticky CONDENSING site header.
  *
- * `position: sticky; top: 0; z-50` (never fixed). At the top of the page it is
+ * `position: sticky; top-0; z-50` (never fixed). At the top of the page it is
  * h-20 (80px) on a transparent ground. Once the user scrolls past ~24px it
  * condenses to h-14 (56px) with a paper/blur surface + bottom border.
  *
- * A passive scroll listener toggles a `scrolled` boolean; the height/bg
- * transition with `transition-all duration-300 ease-smooth` (≤300ms rule).
- *
- * Desktop (lg+): left logo lockup, center Radix NavigationMenu (plain links
- * + mega-menu triggers), right phone link + Free Quote button.
- * Mobile (<lg): logo + hamburger; center nav and phone are hidden.
+ * Desktop (lg+): logo, center Radix NavigationMenu (plain links + mega-menu
+ * triggers) with active-page state, right phone link + Free Quote button.
+ * Mobile (<lg): logo + hamburger.
  */
 
 const SCROLL_THRESHOLD = 24;
@@ -30,6 +29,14 @@ const SCROLL_THRESHOLD = 24;
 export function Header() {
   const [scrolled, setScrolled] = React.useState(false);
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const pathname = usePathname();
+
+  // A hub item (with children) is active on any /services route; a leaf is
+  // active only on its exact route.
+  const isActive = (item: NavItem) =>
+    item.children
+      ? !!pathname?.startsWith("/services")
+      : pathname === item.href;
 
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > SCROLL_THRESHOLD);
@@ -49,18 +56,9 @@ export function Header() {
         )}
       >
         <div className="container-page flex h-full items-center justify-between gap-4">
-          {/* Left — logo lockup */}
-          <Link
-            href="/"
-            aria-label="Abu Irfan — home"
-            className="group flex flex-col leading-none"
-          >
-            <span className="font-display font-semibold tracking-tight text-ink">
-              ABU IRFAN
-            </span>
-            <span className="text-caption uppercase tracking-[0.2em] text-steel">
-              Glass &amp; Aluminum
-            </span>
+          {/* Left — logo */}
+          <Link href="/" aria-label="Abu Irfan — home" className="shrink-0">
+            <Logo />
           </Link>
 
           {/* Center — desktop nav (Radix NavigationMenu) */}
@@ -69,53 +67,72 @@ export function Header() {
             aria-label="Primary"
           >
             <NavigationMenu.List className="flex items-center gap-1">
-              {nav.map((item) => (
-                <NavigationMenu.Item key={item.href}>
-                  {item.children ? (
-                    <>
-                      <NavigationMenu.Trigger
-                        className={cn(
-                          "group relative inline-flex items-center gap-1 px-3 py-2",
-                          "font-display text-small text-steel transition-colors duration-300 ease-smooth",
-                          "hover:text-ink data-[state=open]:text-ink",
-                          "focus-visible:outline-2 focus-visible:outline-brand-bright",
-                        )}
-                      >
-                        <span className="relative">
-                          {item.label}
-                          {/* Bronze underline, slides in origin-left 0→1 */}
-                          <span className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-bronze transition-transform duration-300 ease-smooth group-hover:scale-x-100 group-data-[state=open]:scale-x-100" />
-                        </span>
-                        <Icon
-                          name="arrow-up-right"
-                          size={14}
-                          className="text-steel transition-transform duration-300 ease-smooth group-data-[state=open]:rotate-180"
-                          aria-hidden
-                        />
-                      </NavigationMenu.Trigger>
-                      <NavigationMenu.Content>
-                        <MegaMenu items={item.children} />
-                      </NavigationMenu.Content>
-                    </>
-                  ) : (
-                    <NavigationMenu.Link asChild>
-                      <Link
-                        href={item.href}
-                        className={cn(
-                          "group relative inline-flex items-center px-3 py-2",
-                          "font-display text-small text-steel transition-colors duration-300 ease-smooth hover:text-ink",
-                          "focus-visible:outline-2 focus-visible:outline-brand-bright",
-                        )}
-                      >
-                        <span className="relative">
-                          {item.label}
-                          <span className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-bronze transition-transform duration-300 ease-smooth group-hover:scale-x-100" />
-                        </span>
-                      </Link>
-                    </NavigationMenu.Link>
-                  )}
-                </NavigationMenu.Item>
-              ))}
+              {nav.map((item) => {
+                const active = isActive(item);
+                return (
+                  <NavigationMenu.Item key={item.href}>
+                    {item.children ? (
+                      <>
+                        <NavigationMenu.Trigger
+                          className={cn(
+                            "group relative inline-flex items-center gap-1 px-3 py-2",
+                            "font-display text-small transition-colors duration-300 ease-smooth",
+                            active ? "text-ink" : "text-steel hover:text-ink",
+                            "data-[state=open]:text-ink",
+                            "focus-visible:outline-2 focus-visible:outline-brand-bright",
+                          )}
+                        >
+                          <span className="relative">
+                            {item.label}
+                            <span
+                              className={cn(
+                                "absolute -bottom-0.5 left-0 h-px w-full origin-left bg-bronze transition-transform duration-300 ease-smooth",
+                                active
+                                  ? "scale-x-100"
+                                  : "scale-x-0 group-hover:scale-x-100 group-data-[state=open]:scale-x-100",
+                              )}
+                            />
+                          </span>
+                          <Icon
+                            name="arrow-up-right"
+                            size={14}
+                            className="text-steel transition-transform duration-300 ease-smooth group-data-[state=open]:rotate-180"
+                            aria-hidden
+                          />
+                        </NavigationMenu.Trigger>
+                        <NavigationMenu.Content>
+                          <MegaMenu items={item.children} />
+                        </NavigationMenu.Content>
+                      </>
+                    ) : (
+                      <NavigationMenu.Link asChild>
+                        <Link
+                          href={item.href}
+                          aria-current={active ? "page" : undefined}
+                          className={cn(
+                            "group relative inline-flex items-center px-3 py-2",
+                            "font-display text-small transition-colors duration-300 ease-smooth",
+                            active ? "text-ink" : "text-steel hover:text-ink",
+                            "focus-visible:outline-2 focus-visible:outline-brand-bright",
+                          )}
+                        >
+                          <span className="relative">
+                            {item.label}
+                            <span
+                              className={cn(
+                                "absolute -bottom-0.5 left-0 h-px w-full origin-left bg-bronze transition-transform duration-300 ease-smooth",
+                                active
+                                  ? "scale-x-100"
+                                  : "scale-x-0 group-hover:scale-x-100",
+                              )}
+                            />
+                          </span>
+                        </Link>
+                      </NavigationMenu.Link>
+                    )}
+                  </NavigationMenu.Item>
+                );
+              })}
             </NavigationMenu.List>
 
             {/* Viewport hosts the active Content; positioned under the bar. */}
